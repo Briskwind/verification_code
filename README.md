@@ -3,6 +3,8 @@
 
 我只是个代码的搬运工，进行了组合整理，写了这个验证码机器识别小栗子。
 
+在整个代码搬运和整理的过程中以及对机器学习训练识别准确率对提升过程中，感觉对图片对处理方式对正确率对提升非常大。
+
 目前已经稍微训练了一个模型你可以直接调用进行预测(在`caller.py`文件中)：
 ```python
 imger = Imager()
@@ -39,4 +41,10 @@ propheter_predict(30, del_predict_pic=True)
 
 # todo 当再一次人工对 predict_sort 数据进行筛选之后合并两个分类文件
 # imp.merge_sort()
+```
+
+
+todo
+```python
+异步保存切割后的四个小图片图片,目前在for循环中进行了time.sleep
 ```
