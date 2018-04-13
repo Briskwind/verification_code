@@ -78,8 +78,9 @@ if __name__ == '__main__':
     imger = Imager()
     preparer = Preparer()
     propheter = Propheter()
+
     try:
-        imp = Improver(imger, propheter, preparer, plk_file)
+        # imp = Improver(imger, propheter, preparer, plk_file)
 
         # 对 100 张验证码进行处理准备
         # preparation(100)

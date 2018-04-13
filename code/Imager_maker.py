@@ -47,30 +47,25 @@ def is_value_name(name):
 def create_validate_code(code='code', size=(120, 30), mode="RGB",
                          bg_color=(255, 255, 255), fg_color=(0, 0, 255),
                          font_size=18):
-    width, height = size  # 宽， 高
-    img = Image.new(mode, size, bg_color)  # 创建图形
-    draw = ImageDraw.Draw(img)  # 创建画笔
+    width, height = size
+    img = Image.new(mode, size, bg_color)
+    draw = ImageDraw.Draw(img)
 
     def create_lines():
         """ 绘制干扰线 """
-        line_num = random.randint(*(1, 2))  # 干扰线条数
+        line_num = random.randint(*(1, 2))
 
-        for i in range(line_num):  # pylint: disable=unused-variable
-
-            # 起始点
+        for i in range(line_num):
             begin = (random.randint(0, size[0]), random.randint(0, size[1]))
-            # 结束点
             end = (random.randint(0, size[0]), random.randint(0, size[1]))
             draw.line([begin, end], fill=(0, 0, 0))
 
     def create_points():
         """ 绘制干扰点"""
-        chance = min(100, max(0, int(2)))  # 大小限制在[0, 100]
+        chance = min(100, max(0, int(2)))
 
-        for w in range(width):  # pylint: disable=invalid-name
-
-            for h in range(height):  # pylint: disable=invalid-name
-
+        for w in range(width):
+            for h in range(height):
                 tmp = random.randint(0, 100)
                 if tmp > 100 - chance:
                     draw.point((w, h), fill=(0, 0, 0))
@@ -78,7 +73,7 @@ def create_validate_code(code='code', size=(120, 30), mode="RGB",
     def create_strs():
         """ 绘制验证码字符"""
         c_chars = list(code)
-        strs = ' %s ' % ' '.join(c_chars)  # 每个字符前后以空格隔开
+        strs = ' %s ' % ' '.join(c_chars)
         file_path = os.path.join(BASE_DIR, 'font', 'FZYTK.TTF')
         font = ImageFont.truetype(file_path, font_size)
         font_width, font_height = font.getsize(strs)
@@ -92,7 +87,7 @@ def create_validate_code(code='code', size=(120, 30), mode="RGB",
     create_points()
 
     create_strs()
-    img = img.filter(ImageFilter.EDGE_ENHANCE_MORE)  # 滤镜，边界加强（阈值更大）
+    img = img.filter(ImageFilter.EDGE_ENHANCE_MORE)
     return img
 
 
